@@ -1,0 +1,28 @@
+###
+Docker image build and run documentation
+###
+Author: Ilya Rokhkin
+
+### How to run docker image for civetweb
+Keep the following files in the same folder:
+Dockerfile
+civetweb.tar
+
+From the same folder run:
+$docker build -t ubuntu/civetweb:v1 .
+
+### Once successfully built, run container:
+$docker run -d --name civetweb_gmdevops ubuntu/civetweb:v1
+
+### Get IP of the running container: 
+$ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' civetweb_gmdevops
+
+You will get example: 172.18.0.4 
+
+Run curl to see teh index.html page
+$ curl 172.18.0.3:8080
+<html>
+<head>
+<title>Civetweb: It Works! And Ilya ran it now</title>
+</head>
+<body>
